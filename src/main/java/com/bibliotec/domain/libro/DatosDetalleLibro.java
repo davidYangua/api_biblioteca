@@ -1,4 +1,17 @@
 package com.bibliotec.domain.libro;
 
-public record DatosDetalleLibro() {
+import com.fasterxml.jackson.annotation.JsonAlias;
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.ISBN;
+
+public record DatosDetalleLibro(
+        Long libro_id,
+        String titulo,
+        String autor,
+        String isbn,
+        String imagen
+) {
+    public DatosDetalleLibro(Libro libro){
+        this(libro.getLibro_id(),libro.getTitulo(),libro.getAutor(),libro.getIsbn(),libro.getImagen());
+    }
 }

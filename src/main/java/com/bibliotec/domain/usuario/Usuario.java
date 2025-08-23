@@ -14,20 +14,21 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"idUsuario"})
+@EqualsAndHashCode(of = {"usuario_id"})
 @Entity(name = "Usuario")
 @Table(name = "usuarios")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUsuario;
+    private Long usuario_id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idRol")
+    @JoinColumn(name = "rol_id")
     private Rol rol;
     private String nombre;
     private String email;
     private String password;
+    private Boolean estado;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Prestamo>prestamos;
 

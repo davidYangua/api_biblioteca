@@ -4,5 +4,6 @@ public enum Estado {
     DISPONIBLE,
     PRESTADO,
     DAÑADO,
-    PERDIDO
+    PERDIDO,
+    NO_DISPONIBLE
 }

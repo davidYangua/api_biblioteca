@@ -13,14 +13,14 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"idRol"})
+@EqualsAndHashCode(of = {"rol_id"})
 @Entity(name = "Rol")
 @Table(name = "roles")
 public class Rol {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idRol;
+    private Long rol_id;
     @Enumerated(EnumType.STRING)
     private Roles rol;
     @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

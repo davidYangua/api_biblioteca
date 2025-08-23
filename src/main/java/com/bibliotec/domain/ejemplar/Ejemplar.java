@@ -1,7 +1,7 @@
 package com.bibliotec.domain.ejemplar;
 
 import com.bibliotec.domain.prestamos.Prestamo;
-import com.bibliotec.libro.Libro;
+import com.bibliotec.domain.libro.Libro;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -14,18 +14,18 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"idEjemplar"})
+@EqualsAndHashCode(of = {"ejemplar_id"})
 @Entity(name = "Ejemplar")
 @Table(name = "ejemplares")
 public class Ejemplar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idEjemplar;
+    private Long ejemplar_id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idLibro")
+    @JoinColumn(name = "libro_id")
     private Libro libro;
-    private String codigoUnico;
+    private String codigo_unico;
     @Enumerated(EnumType.STRING)
     private Estado estado;
     @OneToMany(mappedBy = "ejemplar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

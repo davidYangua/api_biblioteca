@@ -5,7 +5,7 @@ INSERT INTO libros (titulo, autor, isbn, imagen, activo) VALUES
 ('Sapiens: De animales a dioses', 'Yuval Noah Harari', '9780062316097', 'https://m.media-amazon.com/images/I/811PTyrckTL._SY466_.jpg', 1);
 
 -- Tabla Ejemplares
-INSERT INTO ejemplares (idLibro, codigoUnico, estado) VALUES
+INSERT INTO ejemplares (libro_id, codigo_unico, estado) VALUES
 -- Libro 1
 (1, 'INV-000001', 'DISPONIBLE'),
 (1, 'INV-000002', 'PRESTADO'),

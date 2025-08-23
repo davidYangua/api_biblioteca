@@ -1,10 +1,10 @@
 create table ejemplares(
-    idEjemplar bigint not null primary key auto_increment,
-    idLibro bigint not null,
-    codigoUnico varchar(100) not null unique,
+    ejemplar_id bigint not null primary key auto_increment,
+    libro_id bigint not null,
+    codigo_unico varchar(100) not null unique,
     estado varchar(50) not null,
 
-    constraint idLibro_fk foreign key(idLibro) references libros(idLibro)
+    constraint libro_id_fk foreign key(libro_id) references libros(libro_id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );

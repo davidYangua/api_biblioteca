@@ -1,11 +1,11 @@
 create table usuarios(
-    idUsuario bigint not null primary key auto_increment,
-    idRol bigint not null,
+    usuario_id bigint not null primary key auto_increment,
+    rol_id bigint not null,
     nombre varchar(50) not null,
     email varchar(50) not null unique,
     password varchar(255) not null,
 
-    constraint idRol_fk foreign key(idRol) references roles(idRol)
+    constraint rol_id_fk foreign key(rol_id) references roles(rol_id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
