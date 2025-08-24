@@ -13,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.Map;
+import java.util.Set;
+
 @RestController
 @RequestMapping("/api/libros")
 public class LibroControler {
@@ -25,12 +28,6 @@ public class LibroControler {
         var libro = libroService.agregarLibro(datos);
         var uri = uriComponentsBuilder.path("/api/libros/{id}").buildAndExpand(libro.libro_id()).toUri();
         return ResponseEntity.created(uri).body(libro);
-    }
-
-    @GetMapping
-    public ResponseEntity<Page<DatosDetalleLibro>> obtenerLibros(@PageableDefault(sort = {"titulo"}) Pageable page){
-        var libros = libroService.obtenerLibros(page);
-        return ResponseEntity.ok(libros);
     }
 
     @PutMapping("/{id}")
@@ -46,8 +43,19 @@ public class LibroControler {
     }
 
     @GetMapping("{id}")
-    private ResponseEntity<DatosDetalleLibro> obtenerLibro(@PathVariable Long id){
+    public ResponseEntity<DatosDetalleLibro> obtenerLibro(@PathVariable Long id){
         var libro = libroService.obtenerLibro(id);
         return ResponseEntity.ok(libro);
+    }
+
+    @GetMapping
+    private ResponseEntity<Page<DatosDetalleLibro>> obtenerLibroPorTitulo(
+            @RequestParam Map<String, String> allParams,
+            @RequestParam(required = false) String titulo,
+            @RequestParam(required = false) String autor,
+            @PageableDefault(sort = {"titulo"}) Pageable page){
+
+        var libros = libroService.obtenerLibros(titulo,page, allParams);
+        return ResponseEntity.ok(libros);
     }
 }

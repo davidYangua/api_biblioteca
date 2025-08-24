@@ -12,6 +12,6 @@ public record DatosDetalleLibro(
         String imagen
 ) {
     public DatosDetalleLibro(Libro libro){
-        this(libro.getLibro_id(),libro.getTitulo(),libro.getAutor(),libro.getIsbn(),libro.getImagen());
+        this(libro.getIdLibro(),libro.getTitulo(),libro.getAutor(),libro.getIsbn(),libro.getImagen());
     }
 }

@@ -3,29 +3,29 @@ package com.bibliotec.domain.ejemplar;
 import com.bibliotec.domain.prestamos.Prestamo;
 import com.bibliotec.domain.libro.Libro;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"ejemplar_id"})
+@EqualsAndHashCode(of = {"idEjemplar"})
 @Entity(name = "Ejemplar")
 @Table(name = "ejemplares")
 public class Ejemplar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ejemplar_id;
+    @Column(name = "ejemplar_id")
+    private Long idEjemplar;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "libro_id")
     private Libro libro;
-    private String codigo_unico;
+    @Column(name = "codigo_unico")
+    private String codigoUnico;
     @Enumerated(EnumType.STRING)
     private Estado estado;
     @OneToMany(mappedBy = "ejemplar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

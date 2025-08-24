@@ -11,6 +11,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+import java.util.Set;
+
 @Service
 public class LibroService {
 
@@ -21,10 +24,6 @@ public class LibroService {
     public DatosDetalleLibro agregarLibro(DatosRegistroLibro datos) {
         var libro = new Libro(datos);
         return new DatosDetalleLibro(libroRepository.save(libro));
-    }
-
-    public Page<DatosDetalleLibro> obtenerLibros(Pageable page) {
-        return libroRepository.findAllByActivoTrue(page).map(DatosDetalleLibro::new);
     }
 
     @Transactional
@@ -52,5 +51,20 @@ public class LibroService {
         //var libro = libroRepository.findById(id);
         var libro = libroRepository.findByIdAndActivoTrue(id).orElseThrow(() -> new RuntimeException("Libro no encontrado o inactivo"));
         return new DatosDetalleLibro(libro);
+    }
+
+    public Page<DatosDetalleLibro> obtenerLibros(String titulo, Pageable page, Map<String, String> allParams){
+
+        Set<String> parametros = Set.of("titulo","autor","size","sort");
+        for(String param: allParams.keySet()){
+            if(!parametros.contains(param)){
+                throw new IllegalArgumentException("Parámtro no vaĺido: "+param);
+            }
+        }
+
+        if(titulo!=null && !titulo.isBlank()){
+            return libroRepository.findByTitulo(titulo, page).map(DatosDetalleLibro::new);
+        }
+        return libroRepository.findAllByActivoTrue(page).map(DatosDetalleLibro::new);
     }
 }

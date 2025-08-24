@@ -11,14 +11,15 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"libro_id"})
+@EqualsAndHashCode(of = {"idLibro"})
 @Entity(name = "Libro")
 @Table(name = "libros")
 public class Libro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long  libro_id;
+    @Column(name = "libro_id")
+    private Long  idLibro;
     private String titulo;
     private String autor;
     private String isbn;
