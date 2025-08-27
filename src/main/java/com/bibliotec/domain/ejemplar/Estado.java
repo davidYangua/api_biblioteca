@@ -5,6 +5,7 @@ public enum Estado {
     PRESTADO("PRESTADO"),
     DAÑADO("DAÑADO"),
     PERDIDO("PERDIDO"),
+    RESERVADO("RESERVADO"),
     NO_DISPONIBLE("NO_DISPONIBLE");
 
     private String value;
@@ -13,10 +14,19 @@ public enum Estado {
         this.value = value;
     }
 
-    public static String getValor(Estado estado){
+    public static String toString(Estado estado){
         for(Estado i: Estado.values()){
             if(i.equals(estado)){
                 return i.value;
+            }
+        }
+        throw new IllegalArgumentException("Estado no válido");
+    }
+
+    public static Estado toEnum(String valor){
+        for(Estado i: Estado.values()){
+            if(i.value.equals(valor)){
+                return i;
             }
         }
         throw new IllegalArgumentException("Estado no válido");

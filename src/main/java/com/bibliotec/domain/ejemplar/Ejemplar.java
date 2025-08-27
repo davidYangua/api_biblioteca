@@ -31,6 +31,11 @@ public class Ejemplar {
     @OneToMany(mappedBy = "ejemplar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Prestamo> prestamos;
 
+    public Ejemplar(DatosRegistroEjemplar datos) {
+        this.codigoUnico = "";
+        this.estado = Estado.toEnum(datos.estado());
+    }
+
     public void addPrestamo(Prestamo prestamo){
         if(prestamos==null){
             prestamos = new ArrayList<>();

@@ -7,6 +7,6 @@ public record DatosDetalleEjemplar(
         String estado
 ) {
     public DatosDetalleEjemplar (Ejemplar datos){
-        this(datos.getIdEjemplar(),datos.getLibro().getIdLibro(), datos.getCodigoUnico(),Estado.getValor(datos.getEstado()));
+        this(datos.getIdEjemplar(),datos.getLibro().getIdLibro(), datos.getCodigoUnico(),Estado.toString(datos.getEstado()));
     }
 }
